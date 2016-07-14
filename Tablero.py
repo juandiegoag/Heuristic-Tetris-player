@@ -21,6 +21,7 @@ def desplazarIzquierda(tablero, pieza):
         for bloque in ordenadoY:
             tablero[ bloque[0] ][ bloque[1] ] = 0
             bloque [1] -= 1
+            ordenadoY.derechas -= 1
     return ordenadoY
 
 def puedeMoverDerecha(tablero, dimension_y, pieza):
@@ -40,11 +41,29 @@ def desplazarDerecha(tablero, dimension_y, pieza):
     if puedeMoverDerecha(tablero, dimension_y, pieza.coordenadas):
         ordenadoY = sorted(pieza.coordenadas, key = lambda x: x[1])
         ordenadoY = ordenadoY[::-1]
-        print ordenadoY
+        # print ordenadoY
         for bloque in ordenadoY:
             tablero[ bloque[0] ][ bloque[1] ] = 0
             bloque [1] += 1
+            ordenadoY.derechas += 1
     return ordenadoY
+
+# def puedeRotarDerecha(tablero, pieza, dimension_x, dimension_y):
+#     piezaNueva  = pieza
+#     if pieza.abajo > dimension_x - 1 or pieza.derechas < 0 or pieza.derechas > dimension_y - 1:
+#         return False
+#
+#     #obtener siguiente pieza en rotaciones
+#     #hacer pieza nueva la siguiente rotacion y sumar los offsets a todos
+#
+#     r = []
+#     for i in piezaNueva.coordenadas:
+#         if [i[0] + 1, i[1]] not in pieza.coordenadas:
+#             r.append(i)
+#     for i in r
+#         if tablero[ i[0] ][ i[1] ] != 0:
+#             return False
+#     return True
 
 def caidaPieza(tablero, dimension_x, dimension_y, pieza):
     fin = False
@@ -54,7 +73,6 @@ def caidaPieza(tablero, dimension_x, dimension_y, pieza):
     if(tocarFondo): pieza.caidos += 1
     # print(pieza.caidos)
     if(pieza.caidos >= 4): fin = True
-
     for bloque in pieza.coordenadas:
         coordenadaX = bloque[0]
         coordenadaY = bloque[1]
@@ -62,7 +80,9 @@ def caidaPieza(tablero, dimension_x, dimension_y, pieza):
             if not tocarFondo: tablero[coordenadaX][coordenadaY] = 0
             coordenadaX        = coordenadaX + 1
             bloque[0]          = coordenadaX
-            if not tocarFondo: tablero[coordenadaX][coordenadaY] = 2
+            if not tocarFondo:
+                tablero[coordenadaX][coordenadaY] = 2
+                pieza.abajos += 1
         indice = indice + 1
     return fin
 

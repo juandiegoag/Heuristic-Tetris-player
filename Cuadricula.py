@@ -56,12 +56,22 @@ hecho = False
 # Lo usamos para establecer cuán rápido de refresca la pantalla.
 reloj = pygame.time.Clock()
 
+def getColor(posicion):
+    if   posicion == 1: return NEGRO
+    elif posicion == 1: return AZUL
+    elif posicion == 1: return ROJO
+    elif posicion == 1: return MAGENTA
+    elif posicion == 1: return CYAN
+    elif posicion == 1: return AMARILLO
+    elif posicion == 1: return LIMA
+    elif posicion == 1: return NARANJA
+
 
 def dibujar(grid):
     # Dibujamos la retícula
     for fila in range(22):
         for columna in range(10):
-            color = BLANCO
+            color = NEGRO
             if grid[fila][columna] == 1:
                 color = CYAN
             elif grid[fila][columna] == 2:
@@ -89,6 +99,7 @@ while not hecho:
         if evento.type == pygame.QUIT:  #para poder salir con X, quitarlo despues
             hecho = True                #para poder salir con X, quitarlo despues
     finCaida = False
+    pieza = None
     pieza = generarPieza(randint(1,7))
     print (pieza.coordenadas)
     pieza.coordenadas = reordenar_para_abajo(pieza.coordenadas)
@@ -97,10 +108,10 @@ while not hecho:
         for evento in pygame.event.get():   #para poder salir con X, quitarlo despues
             if evento.type == pygame.QUIT:  #para poder salir con X, quitarlo despues
                 hecho = True                #para poder salir con X, quitarlo despues
-                
+
         finCaida = caidaPieza(grid, 22, 10, pieza)
         dibujar(grid)
-        reloj.tick(5)
+        reloj.tick(8)
         pygame.display.flip()
     pieza = None
 
