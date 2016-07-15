@@ -99,16 +99,15 @@ while not hecho:
         if evento.type == pygame.QUIT:  #para poder salir con X, quitarlo despues
             hecho = True                #para poder salir con X, quitarlo despues
     finCaida = False
-    pieza = None
     pieza = generarPieza(randint(1,7))
     print (pieza.coordenadas)
-    pieza.coordenadas = reordenar_para_abajo(pieza.coordenadas)
 
     while not finCaida:
         for evento in pygame.event.get():   #para poder salir con X, quitarlo despues
             if evento.type == pygame.QUIT:  #para poder salir con X, quitarlo despues
                 hecho = True                #para poder salir con X, quitarlo despues
-
+        pieza  = rotarDerecha(grid, 22, 10, pieza)
+        pieza.coordenadas = reordenar_para_abajo(pieza.coordenadas)
         finCaida = caidaPieza(grid, 22, 10, pieza)
         dibujar(grid)
         reloj.tick(8)

@@ -59,7 +59,7 @@ class Pieza( object ):
         self.caidos      = caidos
         self.coordenadas = coordenadas
         self.abajos      = 0 #para el offset de los cuadros
-        self.derechas    = 3 #para el offset de los cuadros
+        self.derechas    = 0 #para el offset de los cuadros
         self.rotaciones  = rotaciones
 
 def setTipo(self, tipo):
