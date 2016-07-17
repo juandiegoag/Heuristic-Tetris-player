@@ -53,6 +53,8 @@ Z2 = [ [1, 3], [1, 4], [2, 4], [2, 5] ]
 Z3 = [ [0, 4], [1, 3], [1, 4], [2, 3] ]
 Z  = [ Z0, Z1, Z2, Z3 ]
 
+
+# Clase pieza que guarda información valiosa de cada pieza de Tetris
 class Pieza( object ):
     def __init__(self, tipo, caidos,coordenadas, rotaciones ):
         self.tipo        = tipo
@@ -80,30 +82,29 @@ def setCoordenadas(self,coordenadas):
 def getCoordenadas(self):
     return self.coordenadas
 
+# Genera pieza nueva a partir de valor proveído
 def generarPieza(valor):
     pieza = None
     if   valor == 1:
-        pieza = Pieza(1, 0, I0, I)
+        pieza = Pieza(1, 0, [ [1, 3], [1, 4], [1, 5], [1, 6] ], I)
     elif valor == 2:
-        pieza = Pieza(2, 0, O0, O)
+        pieza = Pieza(2, 0, [ [0, 4], [0, 5], [1, 4], [1, 5] ], O)
     elif valor == 3:
-        pieza = Pieza(3, 0, L0, L)
+        pieza = Pieza(3, 0, [ [0, 3], [0, 4], [1, 4], [2, 4] ], L)
     elif valor == 4:
-        pieza = Pieza(4, 0, J0, J)
+        pieza = Pieza(4, 0, [ [1, 3], [1, 4], [1, 5], [2, 5] ], J)
     elif valor == 5:
-        pieza = Pieza(5, 0, T0, T)
+        pieza = Pieza(5, 0, [ [0, 4], [1, 3], [1, 4], [1, 5] ], T)
     elif valor == 6:
-        pieza = Pieza(6, 0, S0, S)
+        pieza = Pieza(6, 0, [ [0, 4], [0, 5], [1, 3], [1, 4] ], S)
     elif valor == 7:
-        pieza = Pieza(7, 0, Z0, Z)
+        pieza = Pieza(7, 0, [ [0, 3], [0, 4], [1, 4], [1, 5] ], Z)
     return pieza
 
+# Importante pues hace que las piezas caigan en orden, es decir que los bloques de arriba no traten de caer
+# antes que los de abajo, deformando la pieza
 def reordenar_para_abajo(pieza):
     nuevaPieza = sorted(pieza, key = itemgetter(0))
     nuevaPieza.reverse()
     return (nuevaPieza)
 
-def cambio_nivel(bloque1, bloque2):
-    cambio = False
-    if(bloque1[0] != bloque2[2]):
-        cambio = True
