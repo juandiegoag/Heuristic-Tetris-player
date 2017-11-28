@@ -1,2 +1,3 @@
-# Jugador-heur-stico-de-Tetris
+# Heuristic Tetris player
 Algoritmo genético para la elección de estrategias ganadoras en el juego de tetris.
+Genetic algorithm used for the election of winning strategies at Tetris. The program consists on four games running at the same time until the game is over. The objective consists in reaching the point in which two games remain running and two games are over, when this is achieved, this two "winning" games mutate between them to generate four different games to be played. The program continues with this process indefinately, nevertheless, given some time running, each player gets much better and the games start lasting longer.   
